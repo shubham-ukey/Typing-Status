@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Status</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        p {
+            color: green;
+            margin: 20px;
+        }
+
+        textarea {
+            margin-top: 20px;
+        
+        }
+        .box{
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Creating Typing Status</h1>
+    <div class="box">
+        <p id="typingStatus" style="display: none;">Typing....</p>
+        <hr>
+        <textarea id="chatbox" cols="30" rows="10"></textarea>
+    </div>
+    <script>
+        const inputBox = document.getElementById('chatbox');
+        const typingStatus = document.getElementById('typingStatus');
+        let typingTimer;
+        const showTYping = () => typingStatus.style.display = 'block';
+        const hideTyping = () => typingStatus.style.display = 'none';
+        const handleTyping = () => {
+            clearTimeout(typingTimer);
+            showTYping();
+            typingTimer = setTimeout(hideTyping, 1000);
+        }
+        inputBox.addEventListener('keydown', handleTyping)
+    </script>
+</body>
+
+</html>
